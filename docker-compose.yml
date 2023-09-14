@@ -11,6 +11,7 @@ services:
      - ./application:/var/www/html
     ports:
      - 80:80
+    working_dir: /var/www/html
   cache:
     image: redis:alpine
     networks:
