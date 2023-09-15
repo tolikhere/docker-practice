@@ -3,7 +3,7 @@ services:
   app:
     build:
       context: ./docker/app
-      dockerfile: ./docker/app/Dockerfile
+      dockerfile: Dockerfile
     image: shippingdocker/app:latest
     networks:
      - appnet
@@ -31,6 +31,17 @@ services:
      - appnet
     volumes:
      - dbdata:/var/lib/mysql
+  node:
+    build:
+      context: ./docker/node
+      dockerfile: Dockerfile
+    image: shippingdocker/node:latest
+    networks:
+     - appnet
+    volumes:
+     - ./application:/opt
+    working_dir: /opt
+    command: echo hi
 networks:
   appnet:
     driver: bridge
